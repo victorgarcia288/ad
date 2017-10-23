@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-namespace CCategoria
+namespace Serpis
 {
     public class DbCommandHelper
     {

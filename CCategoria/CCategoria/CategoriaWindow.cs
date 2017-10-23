@@ -1,6 +1,8 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Serpis;
+
 namespace CCategoria
 {
     public partial class CategoriaWindow : Gtk.Window

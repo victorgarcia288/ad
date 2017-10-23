@@ -1,6 +1,6 @@
 ﻿using System;
 using Gtk;
-namespace CCategoria
+namespace Serpis
 {
     public class WindowsHelper
     {
