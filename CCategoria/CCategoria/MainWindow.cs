@@ -17,6 +17,7 @@ public partial class MainWindow : Gtk.Window
         Title = "Categoria";
 
         deleteAction.Sensitive = false;
+        editAction.Sensitive = false;
 
         string connectionString = "server=localhost;database=dbprueba;user=root;password=sistemas";
 		App.Instance.Connection = new MySqlConnection(connectionString);
@@ -32,10 +33,16 @@ public partial class MainWindow : Gtk.Window
         treeview1.Selection.Changed += delegate {
             bool hasSelected = treeview1.Selection.CountSelectedRows() > 0;
             deleteAction.Sensitive = hasSelected;
+            editAction.Sensitive = hasSelected;
         };
 
         newAction.Activated += delegate {
             new CategoriaWindow();
+        };
+
+        editAction.Activated += delegate {
+            object id = getId();
+            new CategoriaWindow(id);
         };
 
         refreshAction.Activated += delegate {

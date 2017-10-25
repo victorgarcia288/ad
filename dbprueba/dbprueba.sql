@@ -1,12 +1,12 @@
 create table categoria (
 	id serial primary key,
-	nombre varchar(50) not null unique,
+	nombre varchar(50) not null unique
 );
 
 create table articulo (
 	id serial primary key,
 	nombre varchar(50) not null unique,
-	precio decimal(10,2),
+	precio decimal(10.2),
 	categoria bigint 
 );
 

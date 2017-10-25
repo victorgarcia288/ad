@@ -14,7 +14,7 @@ namespace CCategoria
 
 		private global::Gtk.Table table1;
 
-		private global::Gtk.Entry entryNOmbre;
+		private global::Gtk.Entry entryNombre;
 
 		private global::Gtk.Label Nombre;
 
@@ -52,13 +52,13 @@ namespace CCategoria
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.entryNOmbre = new global::Gtk.Entry();
-			this.entryNOmbre.CanFocus = true;
-			this.entryNOmbre.Name = "entryNOmbre";
-			this.entryNOmbre.IsEditable = true;
-			this.entryNOmbre.InvisibleChar = '•';
-			this.table1.Add(this.entryNOmbre);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1[this.entryNOmbre]));
+			this.entryNombre = new global::Gtk.Entry();
+			this.entryNombre.CanFocus = true;
+			this.entryNombre.Name = "entryNombre";
+			this.entryNombre.IsEditable = true;
+			this.entryNombre.InvisibleChar = '•';
+			this.table1.Add(this.entryNombre);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1[this.entryNombre]));
 			w3.LeftAttach = ((uint)(1));
 			w3.RightAttach = ((uint)(2));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
