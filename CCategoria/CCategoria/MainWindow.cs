@@ -37,12 +37,14 @@ public partial class MainWindow : Gtk.Window
         };
 
         newAction.Activated += delegate {
-            new CategoriaWindow();
+            Categoria categoria = new Categoria();
+            new CategoriaWindow(categoria);
         };
 
         editAction.Activated += delegate {
             object id = getId();
-            new CategoriaWindow(id);
+            Categoria categoria = CategoriaDao.Load(id);
+            new CategoriaWindow(categoria);
         };
 
         refreshAction.Activated += delegate {
@@ -55,10 +57,7 @@ public partial class MainWindow : Gtk.Window
             {
 
                 object id = getId();
-                IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
-                dbCommand.CommandText = "delete from categoria where id = @id";
-                DbCommandHelper.AddParameter(dbCommand, "id", id);
-                dbCommand.ExecuteNonQuery();
+                CategoriaDao.Delete(id);
             }				
 			
            
