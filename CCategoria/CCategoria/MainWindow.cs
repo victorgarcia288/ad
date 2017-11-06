@@ -13,7 +13,7 @@ public partial class MainWindow : Gtk.Window
     {
         
 
-        this.Build();
+        Build();
         Title = "Categoria";
 
         deleteAction.Sensitive = false;
@@ -23,12 +23,15 @@ public partial class MainWindow : Gtk.Window
 		App.Instance.Connection = new MySqlConnection(connectionString);
 		App.Instance.Connection.Open();
 
-		treeview1.AppendColumn("id", new CellRendererText(), "text", 0);
-        treeview1.AppendColumn("nombre", new CellRendererText(), "text", 1);
-        ListStore listStore = new ListStore(typeof(string), typeof(string));
-        treeview1.Model = listStore;
+        TreeViewHelper.Fill(treeview1, CategoriaDao.SelectAll);
+        //treeview1.AppendColumn("id", new CellRendererText(), "text", 0);
+        //treeview1.AppendColumn("nombre", new CellRendererText(), "text", 1);
+        //ListStore listStore = new ListStore(typeof(string), typeof(string));
+        //treeview1.Model = listStore;
 
-        fillListStore(listStore);
+        //fillListStore((ListStore) treeview1.Model);
+
+
 
         treeview1.Selection.Changed += delegate {
             bool hasSelected = treeview1.Selection.CountSelectedRows() > 0;
@@ -48,9 +51,10 @@ public partial class MainWindow : Gtk.Window
         };
 
         refreshAction.Activated += delegate {
-            listStore.Clear();
-            fillListStore(listStore);
-        };
+            TreeViewHelper.Fill(treeview1, CategoriaDao.SelectAll);
+
+			//fillListStore(listStore);
+		};
 
         deleteAction.Activated += delegate {
             if (WindowsHelper.Confirm(this, "Quieres eliminar el registro"))

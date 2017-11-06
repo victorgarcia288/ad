@@ -7,6 +7,7 @@ namespace CCategoria
 {
     public class CategoriaDao
     {
+        public const string SelectAll = "select * from categoria order by";
         public static Categoria Load(object id)
         {
             IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
