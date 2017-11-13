@@ -84,12 +84,5 @@ public partial class MainWindow : Gtk.Window
     }
     
 
-    private void fillListStore(ListStore listStore){
-		IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
-		dbCommand.CommandText = "select * from categoria order by id";
-		IDataReader dataReader = dbCommand.ExecuteReader();
-		while (dataReader.Read())
-            listStore.AppendValues(dataReader["id"].ToString(), dataReader["nombre"]);
-		dataReader.Close();
-    }
+   
 }
