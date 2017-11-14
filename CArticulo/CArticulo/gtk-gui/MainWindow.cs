@@ -7,8 +7,6 @@ public partial class MainWindow
 
 	private global::Gtk.Action newAction;
 
-	private global::Gtk.Action Action;
-
 	private global::Gtk.VBox vbox1;
 
 	private global::Gtk.Toolbar toolbar1;
@@ -25,8 +23,6 @@ public partial class MainWindow
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
 		this.newAction = new global::Gtk.Action("newAction", null, null, "gtk-new");
 		w1.Add(this.newAction, null);
-		this.Action = new global::Gtk.Action("Action", null, null, null);
-		w1.Add(this.Action, null);
 		this.UIManager.InsertActionGroup(w1, 0);
 		this.AddAccelGroup(this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -38,7 +34,7 @@ public partial class MainWindow
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.UIManager.AddUiFromString("<ui><toolbar name=\'toolbar1\'><toolitem name=\'newAction\' action=\'newAction\'/><tool" +
-				"item name=\'Action\' action=\'Action\'/></toolbar></ui>");
+				"item/></toolbar></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;

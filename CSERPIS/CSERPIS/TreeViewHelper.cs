@@ -38,7 +38,7 @@ namespace Serpis
         public static void Fill(TreeView treeView, string selectSql)
         {
             IDbCommand dbCommand = App.Instance.Connection.CreateCommand();
-            dbCommand.CommandText = "select * from categoria order by id";
+            dbCommand.CommandText = selectSql;
             IDataReader dataReader = dbCommand.ExecuteReader();
             init(treeView,dataReader);
             ListStore listStore = (ListStore)treeView.Model;

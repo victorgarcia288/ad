@@ -12,11 +12,7 @@ namespace CArticulo
         private string nombre = "";
         private decimal precio;
 
-        public long Categoria{
-            get { return categoria; }
-            set { categoria = value; }
-        }
-
+      
         public long Id{
             get { return id; }
             set { id = value; }
@@ -31,5 +27,11 @@ namespace CArticulo
             get { return precio; }
             set { precio = value; }
         }
+
+		public long Categoria
+		{
+			get { return categoria; }
+			set { categoria = value; }
+		}
     }
 }

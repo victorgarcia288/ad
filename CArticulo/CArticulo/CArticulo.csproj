@@ -63,13 +63,13 @@
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="MainWindow.cs" />
-    <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ArticuloWindow.cs" />
-    <Compile Include="gtk-gui\CArticulo.ArticuloWindow.cs" />
     <Compile Include="Articulo.cs" />
     <Compile Include="ArticuloDao.cs" />
+    <Compile Include="ArticuloWindow.cs" />
+    <Compile Include="gtk-gui\MainWindow.cs" />
+    <Compile Include="gtk-gui\CArticulo.ArticuloWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

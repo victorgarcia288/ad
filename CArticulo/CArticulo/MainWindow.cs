@@ -18,7 +18,9 @@ public partial class MainWindow : Gtk.Window
 		App.Instance.Connection = new MySqlConnection(connectionString);
 		App.Instance.Connection.Open();
 
-		TreeViewHelper.Fill(treeview1,"select * from articulo");
+		TreeViewHelper.Fill(treeview1,"select a.id, a.precio, a.nombre, c.nombre as categoria" +
+                            " from articulo a left join categoria c on " +
+                            "a.categoria = c.id order by a.id");
 
 		newAction.Activated += delegate {
             Articulo articulo = new Articulo();
