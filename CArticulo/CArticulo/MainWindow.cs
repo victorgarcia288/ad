@@ -12,20 +12,27 @@ public partial class MainWindow : Gtk.Window
         Build();
 		Title = "Articulo";
 
-		
-
-		string connectionString = "server=localhost;database=dbprueba;user=root;password=sistemas";
+        string connectionString = "server=localhost;database=dbprueba;user=root;password=sistemas";
 		App.Instance.Connection = new MySqlConnection(connectionString);
 		App.Instance.Connection.Open();
 
-		TreeViewHelper.Fill(treeview1,"select a.id, a.precio, a.nombre, c.nombre as categoria" +
-                            " from articulo a left join categoria c on " +
-                            "a.categoria = c.id order by a.id");
+
+        TreeViewHelper.Fill(treeView, ArticuloDao.SelectAll);
 
 		newAction.Activated += delegate {
             Articulo articulo = new Articulo();
             new ArticuloWindow(articulo);
 		};
+
+        editAction.Activated += delegate {
+            object id = TreeViewHelper.GetId(treeView);
+            Articulo articulo = ArticuloDao.Load(id);
+            new ArticuloWindow(articulo);
+        };
+
+        refreshAction.Activated += delegate {
+            TreeViewHelper.Fill(treeView, ArticuloDao.SelectAll);
+        };
 
     }
 

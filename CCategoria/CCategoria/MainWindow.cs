@@ -23,7 +23,7 @@ public partial class MainWindow : Gtk.Window
 		App.Instance.Connection = new MySqlConnection(connectionString);
 		App.Instance.Connection.Open();
 
-        TreeViewHelper.Fill(treeview1, CategoriaDao.SelectAll);
+        TreeViewHelper.Fill(treeView, CategoriaDao.SelectAll);
         //treeview1.AppendColumn("id", new CellRendererText(), "text", 0);
         //treeview1.AppendColumn("nombre", new CellRendererText(), "text", 1);
         //ListStore listStore = new ListStore(typeof(string), typeof(string));
@@ -33,8 +33,8 @@ public partial class MainWindow : Gtk.Window
 
 
 
-        treeview1.Selection.Changed += delegate {
-            bool hasSelected = treeview1.Selection.CountSelectedRows() > 0;
+        treeView.Selection.Changed += delegate {
+            bool hasSelected = treeView.Selection.CountSelectedRows() > 0;
             deleteAction.Sensitive = hasSelected;
             editAction.Sensitive = hasSelected;
         };
@@ -45,13 +45,13 @@ public partial class MainWindow : Gtk.Window
         };
 
         editAction.Activated += delegate {
-            object id = getId();
-            Categoria categoria = CategoriaDao.Load(id);
+			object id = TreeViewHelper.GetId(treeView);
+			Categoria categoria = CategoriaDao.Load(id);
             new CategoriaWindow(categoria);
         };
 
         refreshAction.Activated += delegate {
-            TreeViewHelper.Fill(treeview1, CategoriaDao.SelectAll);
+            TreeViewHelper.Fill(treeView, CategoriaDao.SelectAll);
 
 			//fillListStore(listStore);
 		};
@@ -60,7 +60,7 @@ public partial class MainWindow : Gtk.Window
             if (WindowsHelper.Confirm(this, "Quieres eliminar el registro"))
             {
 
-                object id = getId();
+                object id = TreeViewHelper.GetId(treeView);
                 CategoriaDao.Delete(id);
             }				
 			
@@ -76,13 +76,4 @@ public partial class MainWindow : Gtk.Window
         Application.Quit();
         a.RetVal = true;
     }
-
-    private object getId(){
-	    TreeIter treeIter;
-	    treeview1.Selection.GetSelected(out treeIter);
-        return treeview1.Model.GetValue(treeIter, 0);
-    }
-    
-
-   
 }
