@@ -12,15 +12,13 @@ namespace CArticulo
             this.Build();
             entryNombre.Text = articulo.Nombre;
             spinButtonPrecio.Value =Convert.ToDouble(articulo.Precio);
-           
-
             ComboBoxHelper.Fill(comboBoxCategoria, "select id, nombre from categoria order by nombre", 
                                 articulo.Categoria);
 
             saveAction.Activated += delegate {
                 articulo.Nombre = entryNombre.Text;
                 articulo.Precio = Convert.ToDecimal(spinButtonPrecio.Value);
-                //articulo.Categoria = long.Parse(entryCategoria.Text);
+                articulo.Categoria = Convert.ToInt64(ComboBoxHelper.GetId(comboBoxCategoria));
                 ArticuloDao.Save(articulo);
                 Destroy();
             };
