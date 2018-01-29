@@ -1,5 +1,7 @@
 package serpis.ad;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -29,6 +31,18 @@ public class VentaMain {
 				.getResultList();
 		for (Categoria categoria : categorias)
 			System.out.println(categoria);
+		entityManager.getTransaction().commit();
+	}
+	
+	private static void newArticulo() {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Categoria categoria = entityManager.getReference(Categoria.class, 1L);
+		Articulo articulo = new Articulo();
+		articulo.setNombre("nuevo " + new Date());
+		articulo.setPrecio(new BigDecimal(6));
+		articulo.setCategoria(categoria);
+		entityManager.persist(articulo);
 		entityManager.getTransaction().commit();
 	}
 
