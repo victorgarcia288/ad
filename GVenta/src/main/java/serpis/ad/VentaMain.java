@@ -2,7 +2,10 @@ package serpis.ad;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,27 +17,62 @@ public class VentaMain {
 		entityManagerFactory = 
 				Persistence.createEntityManagerFactory("serpis.ad.gventa");
 		
-//		showCategoria();
-//		
-//	    showArticulos();
-//		
-//		showCliente();
-		
-//		modify(23L);
-		
-//		remove (2L);
-		
-//		newCategoria();
-		
-		//showAll();
-		
-		//newArticulo();
-		
-		newPedido();
-		
-		entityManagerFactory.close();	
-		
+		Scanner sn = new Scanner(System.in);
+        boolean salir = false;
+        int opcion;
+ 
+        while (!salir) {
+ 
+        	System.out.println("0. Salir");
+            System.out.println("1. Mostrar todo");
+            System.out.println("2. Mostrar articulos");
+            System.out.println("3. Mostrar categoria");
+            System.out.println("4. Mostrar clientes");
+            System.out.println("5. Mostrar pedidos");
+            System.out.println("6. Mostrar los pedidos de las lineas");
+            System.out.println("7. Añadir articulo");
+ 
+            try {
+ 
+                System.out.println("¿Que desea hacer?");
+                opcion = sn.nextInt();
+ 
+                switch (opcion) {
+                	case 0:
+                		salir = true;
+                		break;     
+                	case 1:
+                		showAll(Articulo.class);
+                        break;
+                    case 2:
+                    	showAll(Articulo.class);
+                        break;
+                    case 3:
+                    	showAll(Categoria.class);
+                        break;
+                    case 4:
+                    	showAll(Cliente.class);
+                        break;
+                    case 5:
+                    	showAll(Pedido.class);
+                        break;
+                    case 6:
+                    	showAll(PedidoLinea.class);
+                        break;
+                    case 7:
+                    	newArticulo();
+                        break;
+                    default:
+                        System.out.println("No ha introducido un numero del menú");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar un número");
+                sn.next();
+            }
+        }
 		entityManagerFactory.close();
+		
+		
 		
 	}
 	
